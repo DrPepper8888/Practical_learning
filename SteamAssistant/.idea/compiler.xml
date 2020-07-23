@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="DataHanding" />
+        <module name="spider-thrift-api" />
+        <module name="DataHanding-api" />
+        <module name="Web-Client" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DataHandling" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="DataHanding" options="-parameters" />
+      <module name="DataHanding-api" options="" />
+      <module name="DataHandling" options="-parameters" />
+      <module name="SteamAssistant" options="-parameters" />
+      <module name="Web-Client" options="-parameters" />
+      <module name="spider-thrift-api" options="" />
+    </option>
+  </component>
+</project>
