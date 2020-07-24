@@ -1,6 +1,6 @@
 package com.steam.service.thrift;
 
-import com.steam.thrift.DataHanding.DataHandingService;
+
 import com.steam.thrift.message.SpiderService;
 import org.apache.thrift.TServiceClient;
 import org.apache.thrift.protocol.TBinaryProtocol;
