@@ -20,6 +20,13 @@ public class Dataprovider {
     @Resource
     private ShowServiceImpl showService;
 
+    @GetMapping("/game-detail")
+    public String getOneGame(){
+        GamePo game=showService.getOneGame();
+        String jsonString =JSONObject.toJSONString(game);
+        return jsonString;
+    }
+
     @GetMapping("/game-data")
     public String getGames()
     {
@@ -44,7 +51,7 @@ public class Dataprovider {
         return jsonString;
 
     }
-    @GetMapping("/game-Comment")
+    @GetMapping("/game-RegionPrice")
     public String getRegionPrice()
     {
         List<RegionPricePo> Prices=showService.getRegionPrice();

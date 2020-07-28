@@ -30,4 +30,9 @@ public class ShowServiceImpl implements ShowService {
     public List<RegionPricePo> getRegionPrice() {
         return null;
     }
+
+    @Override
+    public GamePo getOneGame() {
+        return null;
+    }
 }

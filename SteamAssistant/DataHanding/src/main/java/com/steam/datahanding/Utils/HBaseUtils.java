@@ -18,12 +18,7 @@ import java.util.NavigableMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * hbase工具类
- * @author sixmonth
- * @Date 2019年5月13日
- *
- */
+
 @DependsOn("springContextHolder")//控制依赖顺序，保证springContextHolder类在之前已经加载
 @Component
 public class HBaseUtils {

@@ -1,0 +1,47 @@
+.frist-title {
+    text-align: center;
+    margin: 5% 20%;
+    font-size: x-large;
+}
+.el-row {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.bg-purple {
+    background: #d3dce6;
+}
+
+.bg-purple-light {
+    background: #e5e9f2;
+}
+
+.grid-content {
+    min-height: 36px;
+}
+
+row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+}
+
+.block {
+    text-align: center;
+    margin: 5% auto;
+}
+
+#test {
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+.el-scrollbar__wrap {
+    overflow: scroll;
+    height: 100%;
+}
+.page-component__scroll  {
+    height: 500px;
+}
+html,body {
+    height: 100%;
+}

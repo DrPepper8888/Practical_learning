@@ -12,4 +12,5 @@ public interface ShowService {
     List<GamePo> getGame();
     List<HistoryPricePo> getHistoryPrice();
     List<RegionPricePo> getRegionPrice();
+    GamePo getOneGame();
 }
