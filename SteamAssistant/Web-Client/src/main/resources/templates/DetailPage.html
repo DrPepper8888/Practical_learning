@@ -78,9 +78,10 @@
         <el-col :span="12"><div class="grid-content bg-purple-dark" id="wordcloud"></div></el-col>
     </el-row>
     <el-row :gutter="10">
-        <el-col :span="24"><div class="grid-content bg-purple-dark" id="worldmap"></div></el-col>
+        <el-col :span="12"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row>
 </div>
+<div id="worldmap" style="margin: 10px 5%; height: 600px;"></div>
 
 
 <section id="social" class="parallax">
@@ -94,18 +95,74 @@
                     <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://www.freemoban.com/">www.freemoban.com</a></p>
                 </div>
 
-                <!-- <ul class="social-button">
-                    <li class="wow animated zoomIn"><a href="#"><i class="fa fa-thumbs-up fa-2x"></i></a></li>
-                    <li class="wow animated zoomIn" data-wow-delay="0.3s"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li class="wow animated zoomIn" data-wow-delay="0.6s"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
-                </ul> -->
-
             </div>
         </div>
     </div>
 </section>
+<script src="../static/js/echarts.js"></script>
+<script src="../static/js/echarts-gl.min.js"></script>
+<script src="../static/js/world.js"></script>
+<script>
+    var data=[[108.479,23.1152,1100]]
+    var dom = document.getElementById("earth")
+    var myChart = echarts.init(dom);
+    option = {
+        backgroundColor: "#000",
+        globe:{
+            baseTexture: "../static/img/world.jpg",
+            heightTexture: "../static/img/world.jpg",
+            displacementScale: 0.04,
+            environment: "../static/img/starfield.jpg",
+            shading:"realistic",
+            realisticMaterial: {
+                roughness: 0.9
+            },
+            postEffect: {
+                enable: true
+            },
+            light: {
+                main: {
+                    intensity: 5,
+                    shadow: true
+                },
+                ambientCubemap: {
+                    texture: "../static/img/pisa.hdr",
+                    diffuseIntensity: 0.2
+                }
+            }
+        },
 
-</body>
+
+
+        series: {
+            type: 'bar3D',
+            coordinateSystem: 'globe',
+            label:{
+                show:true,
+                //distance:5,
+                formatter:'我在：{a}{c}',
+                textStyle:{
+                    fontWeight:'bolder',
+                    fontSize:22,
+                    lineHeight:10,
+                    backgroundColor:"#fff",
+                    padding:[5,15],
+                    borderRadius:5
+                }
+
+            },
+            itemStyle:{
+                color:"rgb(252,158,158)"
+            },
+            silent: false,//图形是否不响应和触发鼠标事件
+            shading:"realistic",//着色效果
+            data: data
+        }
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 <script>window.jQuery || document.write('<script src="../static/js/jquery-1.11.1.min.js"><\/script>')</script>
 <script src="js/lunbotu.js"></script>
@@ -129,7 +186,10 @@
 <script src="../static/js/wow.min.js"></script>
 <!-- Custom Functions -->
 <script src="../static/js/main.js"></script>
+<script src="../static/js/detailpage.js"></script>
 <script >new Vue().$mount('#first-apart')</script>
+</body>
+
 
 
 
