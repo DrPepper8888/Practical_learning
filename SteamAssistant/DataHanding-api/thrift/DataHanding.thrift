@@ -33,9 +33,9 @@ struct RegionPrice{
 #要发布的功能
 service DataHandingService {
      Game getInfoByName(1:string username);
-     Game getInfoByPrice(1:string Price);
-     Game getInfoByLabel(1:string Label);
-     RegionPrice getRegionPrice(1:string id);
-     HistoryPrice getHistoryPrice(1:string id);
-     Comment getComment(1:string id);
+     list<Game> getInfoByPrice(1:string Price);
+     list<Game> getInfoByLabel(1:string Label);
+     list<RegionPrice> getRegionPrice(1:string id);
+     list<HistoryPrice> getHistoryPrice(1:string id);
+     list<Comment> getComment(1:string id);
 }
