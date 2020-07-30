@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/styletry.css" />
+    <!-- Fontawesome Icon font -->
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="../static/css/jquery.fancybox.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="../static/css/owl.carousel.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="../static/css/slit-slider.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="../static/css/animate.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../static/css/main.css">
+    <!-- Modernizer Script for old Browsers -->
+    <script src="../static/js/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/rankpage.css">
+    <link rel="stylesheet" href="//unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css">
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script>
+
+</head>
+<body id="body" align="center">
+
+<!-- preloader -->
+<div id="preloader">
+    <div class="loder-box">
+        <div class="battery"></div>
+    </div>
+</div>
+<!-- end preloader -->
+
+<!--
+Fixed Navigation
+==================================== -->
+<header id="navigation" class="navbar-inverse navbar-fixed-top animated-header">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- responsive nav button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- /responsive nav button -->
+
+            <!-- logo -->
+            <h1 class="navbar-brand">
+                <a href="#body">Little Steam</a>
+                <a href="search-by.html">价格区间搜索</a>
+                <a href="rankPage.html">降价排行</a>
+            </h1>
+            <!-- /logo -->
+        </div>
+        <!-- main nav -->
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul id="nav" class="nav navbar-nav">
+                <li><a href="#service">历史折扣价游戏排行</a></li>
+                <li><a href="#portfolio">游戏推荐</a></li>
+            </ul>
+        </nav>
+        <!-- /main nav -->
+
+
+    </div>
+</header>
+<!--
+End Fixed Navigation
+==================================== -->
+
+<main class="site-content" role="main">
+
+    <!--
+    Home Slider
+    ==================================== -->
+
+    <section id="home-slider">
+        <div id="slider" class="sl-slider-wrapper">
+
+            <div class="sl-slider">
+
+                <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+
+                    <div class="bg-img bg-img-1"></div>
+
+                    <div class="slide-caption">
+                        <div class="caption-content">
+                            <h2 class="animated fadeInDown">Welcome to the Little Steam</h2>
+                            <span class="animated fadeInDown">May the joy and happiness around you today and always</span>
+                            <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+
+                    <div class="bg-img bg-img-2"></div>
+                    <div class="slide-caption">
+                        <div class="caption-content">
+                            <h2>Welcome to the Little Steam</h2>
+                            <span>May the joy and happiness around you today and always</span>
+                            <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+
+                    <div class="bg-img bg-img-3"></div>
+                    <div class="slide-caption">
+                        <div class="caption-content">
+                            <h2>Welcome to the Little Steam</h2>
+                            <span>May the joy and happiness around you today and always</span>
+                            <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
+                <a href="javascript:;" class="sl-prev">
+                    <i class="fa fa-angle-left fa-3x"></i>
+                </a>
+                <a href="javascript:;" class="sl-next">
+                    <i class="fa fa-angle-right fa-3x"></i>
+                </a>
+            </nav>
+
+
+            <nav id="nav-dots" class="nav-dots visible-xs visible-sm hidden-md hidden-lg">
+                <span class="nav-dot-current"></span>
+                <span></span>
+                <span></span>
+            </nav>
+
+        </div>
+    </section>
+
+
+
+    <script type="text/javascript" src="../static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        var threeSelectData={
+
+            "选择频道":{
+                val:"",
+                items:{
+                    "二级子菜单":{
+                        val:"",
+                        items:{
+                            "三级子菜单":""
+                        }
+                    }
+                }
+            },
+
+            "jquery特效":{
+                val:"jquery",
+                items:{
+                    "jquery图片特效":{
+                        val:"jqpic",
+                        items:{
+                            "jquery图片切换":"jqpic-01",
+                            "jquery幻灯片":"jqpic-02",
+                            "jquery图片滚动":"jqpic-03",
+                            "jquery图片放大":"jqpic-04",
+                            "jquery广告":"jqpic-05",
+                            "jquery图片其它":"jqpic-06"
+                        }
+                    },
+
+                    "jquery导航菜单":{
+                        val:"jqnav",
+                        items:{
+                            "jquery动画菜单":"jqnav-01",
+                            "jquery下拉菜单":"jqnav-02",
+                            "jquery手风琴菜单":"jqnav-03",
+                            "jquery导航其它":"jqnav-04"
+                        }
+                    },
+
+                    "jquery选项卡特效":{
+                        val:"jqtab",
+                        items:{
+                            "jquery选项卡切换":"jqtab-01",
+                            "jquery滑动选项卡":"jqtab-02"
+                        }
+                    },
+
+                    "jquery文字特效":{
+                        val:"jqfont",
+                        items:{
+                            "jquery文字滚动":"jqfont-01",
+                            "jquery文字切换":"jqfont-02",
+                            "jquery文字其它":"jqfont-03"
+                        }
+                    },
+
+                    "jquery表单特效":{
+                        val:"jqform",
+                        items:{
+                            "jquery表单验证":"jqform-01",
+                            "jquery表单美化":"jqform-02",
+                            "jquery表单其它":"jqform-03"
+                        }
+                    },
+
+                    "jquery滚动条美化":{
+                        val:"jqscroll",
+                        items:{}
+                    },
+
+                    "jquery评分,进度条,日期时间":{
+                        val:"jqrate",
+                        items:{}
+                    },
+
+                    "jquery提示框,弹出层,浮动层":{
+                        val:"jqdiv",
+                        items:{}
+                    },
+
+                    "jquery其它特效":{
+                        val:"jqother",
+                        items:{}
+                    }
+
+                }
+            },
+
+            "js特效":{
+                val:"js",
+                items:{
+
+                    "js图片特效":{
+                        val:"jspic",
+                        items:{
+                            "js图片切换":"jspic-01",
+                            "js幻灯片":"jspic-02",
+                            "js图片滚动":"jspic-03",
+                            "js图片放大":"jspic-04",
+                            "js广告":"jspic05",
+                            "js图片其它":"jspic-06"
+                        }
+                    },
+
+                    "js导航菜单":{
+                        val:"jsnav",
+                        items:{
+                            "js动画菜单":"jsnav-01",
+                            "js下拉菜单":"jsnav-02",
+                            "js手风琴菜单":"jsnav-03",
+                            "js导航其它":"jsnav-04"
+                        }
+                    },
+
+                    "js选项卡特效":{
+                        val:"jstab",
+                        items:{
+                            "js选项卡切换":"jstab-01",
+                            "js滑动选项卡":"jstab-02"
+                        }
+                    },
+
+                    "js文字特效":{
+                        val:"jsfont",
+                        items:{
+                            "js文字滚动":"jsfont-01",
+                            "js文字切换":"jsfont-02",
+                            "js文字其它":"jsfont-03"
+                        }
+                    },
+
+                    "js表单特效":{
+                        val:"jsform",
+                        items:{
+                            "js表单验证":"jsform-01",
+                            "js表单美化":"jsform-02",
+                            "js表单其它":"jsform-03"
+                        }
+                    },
+
+                    "js滚动条美化":{
+                        val:"js-scroll",
+                        items:{}
+                    },
+
+                    "js评分,进度条,日期时间":{
+                        val:"js-rate",
+                        items:{}
+                    },
+
+                    "js提示框,弹出层,浮动层":{
+                        val:"js-div",
+                        items:{}
+                    },
+
+                    "js其它特效":{
+                        val:"js-other",
+                        items:{}
+                    }
+
+                }
+            },
+
+            "flash特效":{
+                val:"flash",
+                items:{
+
+                    "图片特效":{
+                        val:"flash-pic",
+                        items:{}
+                    },
+
+                    "导航菜单":{
+                        val:"flash-nav",
+                        items:{}
+                    },
+
+                    "文字特效":{
+                        val:"flash-font",
+                        items:{}
+                    },
+
+                    "其它":{
+                        val:"flash-other",
+                        items:{}
+                    }
+
+                }
+            },
+
+            "div+css教程":{
+                val:"divcss",
+                items:{
+
+                    "div+css布局":{
+                        val:"divcss-layout",
+                        items:{}
+                    },
+
+                    "div+css菜单":{
+                        val:"divcss-nav",
+                        items:{}
+                    },
+
+                    "css3教程":{
+                        val:"div-css3",
+                        items:{}
+                    },
+
+                    "其它":{
+                        val:"divcss-other",
+                        items:{}
+                    }
+
+                }
+            },
+
+            "html5教程":{
+                val:"html5",
+                items:{
+
+                    "html5特效":{
+                        val:"html5-tx",
+                        items:{}
+                    },
+
+                    "html5图表":{
+                        val:"html5-map",
+                        items:{}
+                    },
+
+                    "其它":{
+                        val:"html5-other",
+                        items:{}
+                    }
+
+                }
+            }
+
+
+        };
+
+        var defaults = {
+            s1:'mainselect',
+            s2:'midselect',
+            s3:'backselect'
+        };
+
+        $(function(){
+            threeSelect(defaults);
+        });
+
+        function threeSelect(config){
+            var $s1=$("#"+config.s1);
+            var $s2=$("#"+config.s2);
+            var $s3=$("#"+config.s3);
+            var v1=config.v1?config.v1:null;
+            var v2=config.v2?config.v2:null;
+            var v3=config.v3?config.v3:null;
+            $.each(threeSelectData,function(k,v){
+                appendOptionTo($s1,k,v.val,v1);
+            });
+
+            $s1.change(function(){
+                $s2.html("");
+                $s3.html("");
+                if(this.selectedIndex==-1)
+                    return;
+
+                var s1_curr_val = this.options[this.selectedIndex].value;
+
+                $.each(threeSelectData,function(k,v){
+                    if(s1_curr_val==v.val){
+                        if(v.items){
+                            $.each(v.items,function(k,v){
+                                appendOptionTo($s2,k,v.val,v2);
+                            });
+                        }
+                    }
+                });
+
+                if($s2[0].options.length==0){
+                    appendOptionTo($s2,"...","",v2);
+                }
+
+                $s2.change();
+
+            }).change();
+
+            $s2.change(function(){
+                $s3.html("");
+                var s1_curr_val = $s1[0].options[$s1[0].selectedIndex].value;
+                if(this.selectedIndex==-1)
+                    return;
+
+                var s2_curr_val = this.options[this.selectedIndex].value;
+
+                $.each(threeSelectData,function(k,v){
+                    if(s1_curr_val==v.val){
+                        if(v.items){
+                            $.each(v.items,function(k,v){
+                                if(s2_curr_val==v.val){
+                                    $.each(v.items,function(k,v){
+                                        appendOptionTo($s3.show(),k,v,v3);
+                                    });
+                                }
+                            });
+
+                            if($s3[0].options.length==0){
+                                appendOptionTo($s3.hide(),"...","",v3);
+                            }
+                        }
+                    }
+                });
+
+            }).change();
+
+            function appendOptionTo($o,k,v,d){
+
+                var $opt=$("<option>").text(k).val(v);
+
+                if(v==d){
+                    $opt.attr("selected", "selected")
+                }
+                $opt.appendTo($o);
+            }
+
+        }
+    </script>
+
+    <select id="mainselect" name="mainselect" style="width:120px;"></select>
+    <select id="midselect" name="midselect" style="width:220px;"></select>
+    <select id="backselect" name="backselect" style="width:160px;"></select>
+
+    <a href="search-by-echarts.html">查看柱状图</a>
+
+
+    <div>
+        <p class="frist-title">
+            价格区间搜索
+        </p>
+    </div>
+    <div id="test" >
+        <el-row :gutter="10" >
+            <el-col :span="3">
+                <div class="grid-content bg-purple">序号</div>
+            </el-col>
+            <el-col :span="7">
+                <div class="grid-content bg-purple-light">游戏名称</div>
+            </el-col>
+            <el-col :span="7">
+                <div class="grid-content bg-purple-light">游戏标签</div>
+            </el-col>
+            <el-col :span="7">
+                <div class="grid-content bg-purple-light">游戏价格</div>
+            </el-col>
+        </el-row>
+        <el-row :gutter="10" v-for="(game,i) in games">
+            <el-col :span="3">
+                <div class="grid-content bg-purple">{{i}}</div>
+            </el-col>
+            <el-col :span="7">
+                <div class="grid-content bg-purple-light">{{game.name}}</div>
+            </el-col>
+            <el-col :span="7">
+                <div class="grid-content bg-purple-light">{{game.tag}}</div>
+            </el-col>
+            <el-col :span="7">
+                <div class="grid-content bg-purple-light">{{game.price}}</div>
+            </el-col>
+        </el-row>
+    </div>
+    <div id="test2">
+        <div class="block">
+            <el-pagination background layout="prev, pager, next, jumper, sizes" :current-page="startPage" :prev-text="prev" :next-text="next" :page-sizes="pagesizearrray" :page-size="pageSize" :total="totalNum" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+        </div>
+    </div>
+
+    <section id="social" class="parallax">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+
+                    <div class="sec-title text-center white wow animated fadeInDown">
+                        <div class="sec-title text-center white wow animated fadeInDown">
+                            <h2>FOLLOW US</h2>
+                            <p>I hope our website can help you.</p>
+                            <p>Copyright &copy; 2020我说的都队辛陈王陈李</p>
+                        </div>
+                    </div>
+
+                    <!-- <ul class="social-button">
+                        <li class="wow animated zoomIn"><a href="#"><i class="fa fa-thumbs-up fa-2x"></i></a></li>
+                        <li class="wow animated zoomIn" data-wow-delay="0.3s"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+                        <li class="wow animated zoomIn" data-wow-delay="0.6s"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+                    </ul> -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+<!-- Essential jQuery Plugins
+================================================== -->
+<script src="../static/js/search-by.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="../static/js/jquery-1.11.1.min.js"><\/script>')</script>
+<script src="../static/js/lunbotu.js"></script>
+<!-- Main jQuery -->
+<!-- <script src="js/jquery-1.11.1.min.js"></script> -->
+<!-- Twitter Bootstrap -->
+<script src="../static/js/bootstrap.min.js"></script>
+<!-- Single Page Nav -->
+<script src="../static/js/jquery.singlePageNav.min.js"></script>
+<!-- jquery.fancybox.pack -->
+<script src="../static/js/jquery.fancybox.pack.js"></script>
+<!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script>--->
+<!-- Owl Carousel -->
+<script src="../static/js/owl.carousel.min.js"></script>
+<!-- jquery easing -->
+<script src="../static/js/jquery.easing.min.js"></script>
+<!-- Fullscreen slider -->
+<script src="../static/js/jquery.slitslider.js"></script>
+<script src="../static/js/jquery.ba-cond.min.js"></script>
+<!-- onscroll animation -->
+<script src="../static/js/wow.min.js"></script>
+<!-- Custom Functions -->
+<script src="../static/js/main.js"></script>
+<script src="../static/js/rankpage.js"></script>
+</body>
+</html>

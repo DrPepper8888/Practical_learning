@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <!-- import CSS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/styletry.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/styletry.css" />
     <!-- Fontawesome Icon font -->
     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <!-- bootstrap.min -->
@@ -22,12 +22,28 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="../static/css/main.css">
     <!-- Modernizer Script for old Browsers -->
-    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="../static/js/modernizr-2.6.2.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/rankpage.css">
     <link rel="stylesheet" href="//unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css">
     <script src="//unpkg.com/vue/dist/vue.js"></script>
     <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script>
 </head>
+
+<body id="body">
+
+<!-- preloader -->
+<div id="preloader">
+    <div class="loder-box">
+        <div class="battery"></div>
+    </div>
+</div>
+<!-- end preloader -->
+
+<!--
+Fixed Navigation
+==================================== -->
+
+
 <header id="navigation" class="navbar-inverse navbar-fixed-top animated-header">
     <div class="container">
         <div class="navbar-header">
@@ -60,11 +76,87 @@
 
     </div>
 </header>
+<!--
+End Fixed Navigation
+==================================== -->
+<main class="site-content" role="main">
 
-<body>
+    <!--
+    Home Slider
+    ==================================== -->
 
-<div style="width: auto;height: 500px;background: black">
-</div>
+    <section id="home-slider">
+        <div id="slider" class="sl-slider-wrapper">
+
+            <div class="sl-slider">
+
+                <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+
+                    <div class="bg-img bg-img-1"></div>
+
+                    <div class="slide-caption">
+                        <div class="caption-content">
+                            <h2 class="animated fadeInDown">Welcome to the Little Steam</h2>
+                            <span class="animated fadeInDown">May the joy and happiness around you today and always</span>
+                            <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+
+                    <div class="bg-img bg-img-2"></div>
+                    <div class="slide-caption">
+                        <div class="caption-content">
+                            <h2>Welcome to the Little Steam</h2>
+                            <span>May the joy and happiness around you today and always</span>
+                            <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+
+                    <div class="bg-img bg-img-3"></div>
+                    <div class="slide-caption">
+                        <div class="caption-content">
+                            <h2>Welcome to the Little Steam</h2>
+                            <span>May the joy and happiness around you today and always</span>
+                            <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
+                <a href="javascript:;" class="sl-prev">
+                    <i class="fa fa-angle-left fa-3x"></i>
+                </a>
+                <a href="javascript:;" class="sl-next">
+                    <i class="fa fa-angle-right fa-3x"></i>
+                </a>
+            </nav>
+
+
+            <nav id="nav-dots" class="nav-dots visible-xs visible-sm hidden-md hidden-lg">
+                <span class="nav-dot-current"></span>
+                <span></span>
+                <span></span>
+            </nav>
+
+        </div>
+    </section>
+
+
+<!--<body>-->
+
 <div>
     <p class="frist-title">
     最低折扣排行
@@ -85,7 +177,7 @@
             <div class="grid-content bg-purple-light">游戏价格</div>
         </el-col>
     </el-row>
-        <el-row :gutter="10" v-for="(game,i) in games" @click="link(i.rank)">
+        <el-row :gutter="10" v-for="(game,i) in games">
             <el-col :span="3">
                 <div class="grid-content bg-purple">{{i}}</div>
             </el-col>
@@ -112,9 +204,11 @@
             <div class="row">
 
                 <div class="sec-title text-center white wow animated fadeInDown">
-                    <h2>FOLLOW US</h2>
-                    <p>Beautifully simple follow buttons to help you get followers on</p>
-                    <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://www.freemoban.com/">www.freemoban.com</a></p>
+                    <div class="sec-title text-center white wow animated fadeInDown">
+                        <h2>FOLLOW US</h2>
+                        <p>I hope our website can help you.</p>
+                        <p>Copyright &copy; 2020我说的都队辛陈王陈李</p>
+                    </div>
                 </div>
 
                 <!-- <ul class="social-button">
@@ -128,11 +222,12 @@
     </div>
 </section>
 
+</main>
 
-
+<script src="../static/js/rankpage.js"></script>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 <script>window.jQuery || document.write('<script src="../static/js/jquery-1.11.1.min.js"><\/script>')</script>
-<script src="js/lunbotu.js"></script>
+<script src="../static/js/lunbotu.js"></script>
 <!-- Main jQuery -->
 <!-- <script src="js/jquery-1.11.1.min.js"></script> -->
 <!-- Twitter Bootstrap -->
@@ -153,6 +248,5 @@
 <script src="../static/js/wow.min.js"></script>
 <!-- Custom Functions -->
 <script src="../static/js/main.js"></script>
-<script src="../static/js/rankpage.js"></script>
 </body>
 </html>

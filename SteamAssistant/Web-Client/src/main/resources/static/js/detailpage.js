@@ -4,8 +4,6 @@ $(function () {
     //词云
     var myChart2 = echarts.init(document.getElementById('wordcloud'));
     //柱状图
-
-    var myChart3= echarts.init(document.getElementById('worldmap'));
     //传输基本信息
     var Game={};
     $.ajax({
