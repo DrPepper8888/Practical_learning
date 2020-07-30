@@ -1,39 +1,40 @@
 package com.steam.thrift.DataHanding.po;
 
+
 public class GamePo {
-    private String gameId;
+    private String gameID;
     private String gameName;
     private int commentsNum;
     private String LikeRate;
     private String discount;
     private String price;
     private String img;
-    private String outDate;
     private String Developers;
-    private String diyLabels;
+    private String tag;
+    private String publishers;
 
     public GamePo() {
     }
 
-    public GamePo(String gameId, String gameName, int commentsNum, String likeRate, String discount, String price, String img, String outDate, String developers, String diyLabels) {
-        this.gameId = gameId;
+    public GamePo(String gameID, String gameName, int commentsNum, String likeRate, String discount, String price, String img, String developers, String tag, String publishers) {
+        this.gameID = gameID;
         this.gameName = gameName;
         this.commentsNum = commentsNum;
         LikeRate = likeRate;
         this.discount = discount;
         this.price = price;
         this.img = img;
-        this.outDate = outDate;
         Developers = developers;
-        this.diyLabels = diyLabels;
+        this.tag = tag;
+        this.publishers = publishers;
     }
 
-    public String getGameId() {
-        return gameId;
+    public String getGameID() {
+        return gameID;
     }
 
-    public void setGameId(String gameId) {
-        this.gameId = gameId;
+    public void setGameID(String gameID) {
+        this.gameID = gameID;
     }
 
     public String getGameName() {
@@ -84,14 +85,6 @@ public class GamePo {
         this.img = img;
     }
 
-    public String getOutDate() {
-        return outDate;
-    }
-
-    public void setOutDate(String outDate) {
-        this.outDate = outDate;
-    }
-
     public String getDevelopers() {
         return Developers;
     }
@@ -100,27 +93,35 @@ public class GamePo {
         Developers = developers;
     }
 
-    public String getDiyLabels() {
-        return diyLabels;
+    public String getTag() {
+        return tag;
     }
 
-    public void setDiyLabels(String diyLabels) {
-        this.diyLabels = diyLabels;
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getPublishers() {
+        return publishers;
+    }
+
+    public void setPublishers(String publishers) {
+        this.publishers = publishers;
     }
 
     @Override
     public String toString() {
         return "GamePo{" +
-                "gameId='" + gameId + '\'' +
+                "gameID='" + gameID + '\'' +
                 ", gameName='" + gameName + '\'' +
                 ", commentsNum=" + commentsNum +
                 ", LikeRate='" + LikeRate + '\'' +
                 ", discount='" + discount + '\'' +
                 ", price='" + price + '\'' +
                 ", img='" + img + '\'' +
-                ", outDate='" + outDate + '\'' +
                 ", Developers='" + Developers + '\'' +
-                ", diyLabels='" + diyLabels + '\'' +
+                ", tag='" + tag + '\'' +
+                ", publishers='" + publishers + '\'' +
                 '}';
     }
 }

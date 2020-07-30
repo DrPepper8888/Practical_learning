@@ -1,6 +1,7 @@
 package com.steam.datahanding.Utils;
 import com.steam.datahanding.HbaseConfig;
 import com.steam.datahanding.SpringContextHolder;
+import com.steam.thrift.DataHanding.po.GamePo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
@@ -11,17 +12,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.NavigableMap;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @DependsOn("springContextHolder")//控制依赖顺序，保证springContextHolder类在之前已经加载
 @Component
 public class HBaseUtils {
+    static{
+        System.setProperty("HADOOP_USER_NAME", "icss");
+        String osInfo = System.getProperty("os.name");
+        if (osInfo.toLowerCase().indexOf("windows") != -1){
+            System.setProperty("hadoop.home.dir", "D:/DevTools/hadoop");
+            System.setProperty("hadoop.tmp.dir", "d:/mrtmp");
+        }
+    }
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -312,6 +320,84 @@ public class HBaseUtils {
             admin.disableTable(name);
             admin.deleteTable(name);
         }
+    }
+
+
+    /**
+     * 按照时间搜索
+     *
+     * @param tablename
+     */
+    public ArrayList<Map<String, Object> > scanInfoByTime(String tablename) throws IOException {
+        TableName name=TableName.valueOf(tablename);
+        Table table = connection.getTable(name);
+        ResultScanner results = table.getScanner(new Scan());
+        ArrayList<Map<String,Object> > arrayList = new ArrayList<>();
+        for (Result result : results){
+            Map<String,Object> map = new HashMap<>();
+            String gameID="";
+            String gameName="";
+            int commentsNum=0;
+            String LikeRate="";
+            String discount="";
+            String price="";
+            String img="";
+            String Developers="";
+            String tag="";
+            String publishers="";
+            for(Cell cell : result.rawCells()){
+                String row = Bytes.toString(cell.getRowArray(), cell.getRowOffset(), cell.getRowLength());
+                String colName = Bytes.toString(cell.getQualifierArray(),cell.getQualifierOffset(),cell.getQualifierLength());
+                String value = Bytes.toString(cell.getValueArray(), cell.getValueOffset(), cell.getValueLength());
+                gameName=row;
+                if(colName.equals("gameID")){
+                    gameID=value;
+                }if(colName.equals("commentsNum")){
+                    commentsNum=Integer.parseInt(value);
+                }if(colName.equals("LikeRate")){
+                    LikeRate=value;
+                }if(colName.equals("discount")){
+                    discount=value;
+                    if(!discount.equals("no-discount")){
+                        String regEx="[^0-9]";
+                        Pattern p=Pattern.compile(regEx);
+                        Matcher m=p.matcher(discount);
+                        map.put("discount",Integer.parseInt(m.replaceAll("").trim()));
+                    }
+                    else map.put("discount",0);
+                }if(colName.equals("price")){
+                    price=value;
+                }if(colName.equals("img")){
+                    img=value;
+                }if(colName.equals("Developers")){
+                    Developers=value;
+                }if(colName.equals("tag")){
+                    tag=value;
+                }if(colName.equals("publishers")){
+                    publishers=value;
+                }
+            }
+            GamePo gamePo=new GamePo(gameID,gameName,commentsNum,LikeRate,discount,price,img,Developers,tag,publishers);
+            map.put("gamepo",gamePo);
+            arrayList.add(map);
+        }
+        return sortByTime(arrayList);
+    }
+
+    /**
+     * 将arraylist按降价排序
+     */
+    public static ArrayList<Map<String,Object> > sortByTime(ArrayList<Map<String,Object>> inputArrayList){
+        Comparator c = new Comparator<Map<String,String>>() {
+            public int compare(Map<String,String> o1, Map<String,String> o2) {
+                // TODO Auto-generated method stub
+                if(Long.parseLong(o1.get("discount"))<Long.parseLong(o2.get("discount")))
+                    return 1;
+                else return -1;
+            }
+        };
+        Collections.sort(inputArrayList,c);
+        return inputArrayList;
     }
 
 

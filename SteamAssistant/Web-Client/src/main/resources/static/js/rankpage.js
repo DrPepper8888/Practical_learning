@@ -27,6 +27,9 @@ $(function () {
             ]
         },
         methods: {
+            link(data) {
+                window.location.href = "DetailPage?name=" + data
+            },
             // 初始页currentPage、初始每页数据数pagesize和数据data
             handleSizeChange(size) {
                 this.pageSize = size

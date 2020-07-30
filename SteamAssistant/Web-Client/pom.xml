@@ -15,6 +15,11 @@
     <groupId>com.steam</groupId>
     <artifactId>Web-Client</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+    </properties>
     <!--dependencies  -->
     <dependencies>
         <!--Springboot 依赖-->
@@ -94,6 +99,13 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
             <version>3.1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.steam</groupId>
+            <artifactId>DataHandling</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
