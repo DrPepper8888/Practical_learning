@@ -85,7 +85,7 @@
             <div class="grid-content bg-purple-light">游戏价格</div>
         </el-col>
     </el-row>
-        <el-row :gutter="10" v-for="(game,i) in games" @click="link(i.rank)">
+        <el-row :gutter="10" v-for="(game,i) in games" @click="link(game.name)">
             <el-col :span="3">
                 <div class="grid-content bg-purple">{{i}}</div>
             </el-col>
@@ -113,8 +113,8 @@
 
                 <div class="sec-title text-center white wow animated fadeInDown">
                     <h2>FOLLOW US</h2>
-                    <p>Beautifully simple follow buttons to help you get followers on</p>
-                    <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://www.freemoban.com/">www.freemoban.com</a></p>
+                    <p>I hope our website can help you.</p>
+                    <p>Copyright &copy; 2020我说的都队辛陈王陈李</p>
                 </div>
 
                 <!-- <ul class="social-button">

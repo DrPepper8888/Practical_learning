@@ -22,7 +22,12 @@
     <link rel="stylesheet" href="../static/css/main.css">
     <!-- Modernizer Script for old Browsers -->
     <script src="../static/js/modernizr-2.6.2.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/rankpage.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!-- import Vue before Element -->
+    <script src="js/vue.js "></script>
+    <!-- import JavaScript -->
+    <script src="js/index.js "></script>
+    <script src="js/jquery.min.js "></script>
     <link rel="stylesheet" href="//unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css">
     <script src="//unpkg.com/vue/dist/vue.js"></script>
     <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script>
@@ -154,7 +159,7 @@ End Fixed Navigation
 
 
 
-    <script type="text/javascript" src="../static/js/jquery-1.11.1.min.js"></script>
+    <!--<script type="text/javascript" src="../static/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         var threeSelectData={
 
@@ -488,15 +493,144 @@ End Fixed Navigation
 
     <select id="mainselect" name="mainselect" style="width:120px;"></select>
     <select id="midselect" name="midselect" style="width:220px;"></select>
-    <select id="backselect" name="backselect" style="width:160px;"></select>
-
-    <a href="search-by-echarts.html">查看柱状图</a>
-
-
+    <select id="backselect" name="backselect" style="width:160px;"></select>-->
     <div>
         <p class="frist-title">
             价格区间搜索
         </p>
+    </div>
+    <div id="show">
+        <div>
+            <el-form :inline="true" :model="formInline" v-show="show2" class="demo-form-inline">
+                <el-form-item label="最低价格">
+                    <el-input v-model="formInline.itemprice1" placeholder="最低价格"></el-input>
+                </el-form-item>
+                <el-form-item label="最高价格">
+                    <el-input v-model="formInline.itemprice2" placeholder="最高价格"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+            </el-form>
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item1" class="el-button-type">{{item1}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item2" class="el-button-type">{{item2}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item3" class="el-button-type">{{item3}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item4" class="el-button-type">{{item4}}</el-button>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item5" class="el-button-type">{{item5}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item6" class="el-button-type">{{item6}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item7" class="el-button-type">{{item7}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show" class="grid-content bg-purple">
+                        <el-button @click="show = !show,show2=!show2,itemtype=item8" class="el-button-type">{{item8}}</el-button>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <div v-show="show2" class="grid-content bg-purple">
+                        <el-button @click="itemprice1='0',itemprice2='50',show3=!show3, passinfo()" class="el-button-type">{{price1}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show2" class="grid-content bg-purple">
+                        <el-button @click="itemprice1='50',itemprice2='100',show3=!show3, passinfo()" class="el-button-type">{{price2}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show2" class="grid-content bg-purple">
+                        <el-button @click="itemprice1='100',itemprice2='150',show3=!show3, passinfo()" class="el-button-type">{{price3}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show2" class="grid-content bg-purple">
+                        <el-button @click="itemprice1='150',itemprice2='200',show3=!show3, passinfo()" class="el-button-type">{{price4}}</el-button>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <div v-show="show2" class="grid-content bg-purple">
+                        <el-button @click="itemprice1='200',itemprice2='250',show3=!show3, passinfo()" class="el-button-type">{{price5}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show2" class="grid-content bg-purple">
+                        <el-button @click="itemprice1='250',itemprice2='300',show3=!show3, passinfo()" class="el-button-type">{{price6}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show2" class="grid-content bg-purple">
+                        <el-button @click="itemprice1='300',itemprice2='350',show3=!show3, passinfo()" class="el-button-type">{{price7}}</el-button>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div v-show="show2" class=" grid-content bg-purple ">
+                        <el-button @click="itemprice1='350',itemprice2='400',show3=!show3, passinfo()" class="el-button-type ">{{price8}}</el-button>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+        <div>
+            <el-row :gutter="10">
+                <el-col :span="3">
+                    <div class="grid-content bg-purple">序号</div>
+                </el-col>
+                <el-col :span="7">
+                    <div class="grid-content bg-purple-light">游戏名称</div>
+                </el-col>
+                <el-col :span="7">
+                    <div class="grid-content bg-purple-light">游戏标签</div>
+                </el-col>
+                <el-col :span="7">
+                    <div class="grid-content bg-purple-light">游戏价格</div>
+                </el-col>
+            </el-row>
+            <el-row :gutter="10" v-for="(game,i) in games">
+                <el-col :span="3">
+                    <div class="grid-content bg-purple">{{i}}</div>
+                </el-col>
+                <el-col :span="7">
+                    <div class="grid-content bg-purple-light">{{game.name}}</div>
+                </el-col>
+                <el-col :span="7">
+                    <div class="grid-content bg-purple-light">{{game.tag}}</div>
+                </el-col>
+                <el-col :span="7">
+                    <div class="grid-content bg-purple-light">{{game.price}}</div>
+                </el-col>
+            </el-row>
+        </div>>
     </div>
     <div id="test" >
         <el-row :gutter="10" >
@@ -560,6 +694,59 @@ End Fixed Navigation
 
 
 </main>
+<script>
+    new Vue({
+        el: '#show',
+        data() {
+            return {
+                games: "",
+                item1: "冒险 ",
+                item2: "策略 ",
+                item3: "休闲 ",
+                item4: "角色扮演 ",
+                item5: "独立 ",
+                item6: "模拟 ",
+                item7: "动作 ",
+                item8: "网红 ",
+                price1: "0-50",
+                price2: "50-100",
+                price3: "100-150",
+                price4: "150-200",
+                price5: "200-250",
+                price6: "250-300",
+                price7: "300-350",
+                price8: "350-400",
+                show: true,
+                show2: false,
+                show3: false,
+                formInline: {
+                    itemprice1: '',
+                    itemprice2: '',
+                    itemtype: " "
+                }
+            }
+        },
+        methods: {
+            passinfo() {
+                var data1 = {}
+                $.ajax({
+                    type: 'get',
+                    url: '/DATA/game-data?formInline=' + formInline,
+                    dataType: "json",
+                    success: function(result) {
+                        data1 = result;
+                    },
+                    error: function(errorMessage) {
+                        alert("Data is Error.");
+                    }
+                })
+            },
+            onSubmit() {
+                passinfo();
+            }
+        }
+    })
+</script>
 
 <!-- Essential jQuery Plugins
 ================================================== -->

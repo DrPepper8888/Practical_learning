@@ -83,13 +83,13 @@
                     {{Gameinfo.price }}
                 </div>
                 <div class="text item">
-                    {{Gameinfo.outDate }}
+                    {{Gameinfo.discount }}
                 </div>
                 <div class="text item">
                     {{Gameinfo.Developers }}
                 </div>
                 <div class="text item">
-                    {{Gameinfo.diyLabels }}
+                    {{Gameinfo.tag }}
                 </div>
             </el-card>
         </div></el-col>
@@ -161,9 +161,9 @@
             Game.LikeRate=result.LikeRate
             Game.discount=result.discount
             Game.price=result.price
-            Game.outDate=result.outDate
+            Game.publishers=result.publishers
             Game.Developers=result.Developers
-            Game.diyLabels=result.diyLabels
+            Game.tag=result.tag
         },
         error : function(errorMessage){
             alert("Data is Error.age");
@@ -228,7 +228,7 @@ var data=[
         ]
     $.ajax({
         type : 'get',
-        url : '/remote/game-RegionPrice?name'+Gamename,
+        url : '/DATA/game-RegionPrice?name'+Gamename,
         dataType : "json",
         success : function (result) {
             result.sort( (a, b) => {
@@ -248,10 +248,10 @@ var data=[
     option = {
         backgroundColor: "#000",
         globe:{
-            baseTexture: "../static/img/world.jpg",
-            heightTexture: "../static/img/world.jpg",
+            baseTexture: "/img/world.jpg",
+            heightTexture: "/img/world.jpg",
             displacementScale: 0.04,
-            environment: "../static/img/starfield.jpg",
+            environment: "/img/starfield.jpg",
             shading:"realistic",
             realisticMaterial: {
                 roughness: 0.9
@@ -265,7 +265,7 @@ var data=[
                     shadow: true
                 },
                 ambientCubemap: {
-                    texture: "../static/img/pisa.hdr",
+                    texture: "/img/pisa.hdr",
                     diffuseIntensity: 0.2
                 }
             }

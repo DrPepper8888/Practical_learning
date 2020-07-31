@@ -20,7 +20,7 @@ public class ThriftServer {
 
     // 从 application.properties 读入服务端口号
 //    @Value("${service.port}")
-    @Value("9083")
+    @Value("7911")
     private int servicePort;
 
     // 在当前的 Thrift Server 中要借助 UserServieImpl 对外提供功能

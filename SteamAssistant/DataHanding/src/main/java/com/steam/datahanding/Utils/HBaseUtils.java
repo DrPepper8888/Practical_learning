@@ -354,8 +354,9 @@ public class HBaseUtils {
                 if(colName.equals("gameID")){
                     gameID=value;
                 }if(colName.equals("commentsNum")){
-//                    commentsNum=Integer.parseInt(value);
-                    commentsNum=0;
+                    if(!value.equals(""))
+                        commentsNum=Integer.parseInt(value);
+                    else commentsNum=0;
                 }if(colName.equals("LikeRate")){
                     LikeRate=value;
                 }if(colName.equals("discount")){
@@ -364,9 +365,9 @@ public class HBaseUtils {
                         String regEx="[^0-9]";
                         Pattern p=Pattern.compile(regEx);
                         Matcher m=p.matcher(discount);
-                        map.put("discount",Integer.parseInt(m.replaceAll("").trim()));
+                        map.put("discount",m.replaceAll("").trim());
                     }
-                    else map.put("discount",0);
+                    else map.put("discount","0");
                 }if(colName.equals("price")){
                     price=value;
                 }if(colName.equals("img")){
@@ -380,7 +381,6 @@ public class HBaseUtils {
                 }
             }
             Game game=new Game(gameID,gameName,commentsNum,LikeRate,discount,price,img,Developers,tag,publishers);
-
             map.put("game",game);
             arrayList.add(map);
         }
@@ -416,14 +416,18 @@ public class HBaseUtils {
             public int compare(Map<String,String> o1, Map<String,String> o2) {
                 // TODO Auto-generated method stub
                 if(o1.containsKey("discount")) {
-                    if (Long.parseLong(o1.get("discount")) < Long.parseLong(o2.get("discount")))
+                    if (Integer.parseInt(o1.get("discount")) < Integer.parseInt(o2.get("discount")))
                         return 1;
-                    else return -1;
+                    else if(Integer.parseInt(o1.get("discount")) > Integer.parseInt(o2.get("discount")))
+                        return -1;
+                    else return 0;
                 }
                 else if(o1.containsKey("score")){
-                    if (Long.parseLong(o1.get("score")) < Long.parseLong(o2.get("score")))
+                    if (Float.parseFloat(o1.get("score")) < Float.parseFloat(o2.get("score")))
                         return 1;
-                    else return -1;
+                    else if (Float.parseFloat(o1.get("score")) > Float.parseFloat(o2.get("score")))
+                        return -1;
+                    else return 0;
                 }
                 else return -1;
             }

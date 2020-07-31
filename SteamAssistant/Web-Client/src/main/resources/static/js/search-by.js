@@ -1,11 +1,12 @@
 $(function () {
-    var data1={}
+    var data1=[]
     $.ajax({
         type : 'get',
-        url : '/remote/game-data',
+        url : '/DATA/game-data',
         dataType : "json",
         success : function (result) {
             data1=result;
+            alert(data1)
         },
         error : function (errorMessage) {
             alert("Data is Error.");

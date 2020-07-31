@@ -1,5 +1,5 @@
 $(function () {
-    var data1={}
+    var data1=[]
     $.ajax({
         type : 'get',
         url : '/DATA/game-data',
