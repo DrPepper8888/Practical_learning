@@ -19,7 +19,8 @@ import javax.annotation.Resource;
 public class ThriftServer {
 
     // 从 application.properties 读入服务端口号
-    @Value("${service.port}")
+//    @Value("${service.port}")
+    @Value("9083")
     private int servicePort;
 
     // 在当前的 Thrift Server 中要借助 UserServieImpl 对外提供功能
@@ -57,9 +58,9 @@ public class ThriftServer {
         TServer server = new TNonblockingServer(args);
 
         // 6. 启动服务器
-        System.out.println("UserService Thrift Server starting...");
+        System.out.println("DataHandingService Thrift Server starting...");
         server.serve();
-        System.out.println("UserService Thrift Server stoped.");
+        System.out.println("DataHandingService Thrift Server stoped.");
     }
 
 }

@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class datahandingservice {
+public class DHservice {
     @Value("${thrift.DataHanding.ip}")
     private String serverIp;
     @Value("${thrift.DataHanding.port}")
     private int ServerPort;
-    public <T>T startService(){
+    public DataHandingService.Client startService(){
         TSocket socket = new TSocket(serverIp, ServerPort, 3000);
         TTransport transport = new TFramedTransport(socket);
         try {
@@ -28,7 +28,7 @@ public class datahandingservice {
             return null;
         }
         TProtocol protocol = new TBinaryProtocol(transport);
-        TServiceClient DataHandingservice=new DataHandingService.Client(protocol);
-        return (T) DataHandingservice;
+        TServiceClient dataHandingService=new DataHandingService.Client(protocol);
+        return (DataHandingService.Client) dataHandingService;
     }
 }
