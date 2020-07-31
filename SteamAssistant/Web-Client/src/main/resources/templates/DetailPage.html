@@ -70,8 +70,29 @@
 </div>
 <div id="first-apart">
     <el-row :gutter="10">
-        <el-col :span="6"><div class="grid-content bg-purple-dark" id="mainimg"></div></el-col>
-        <el-col :span="18"><div class="grid-content bg-purple-dark" id="detailinfo"></div></el-col>
+        <el-col :span="6"><div class="grid-content bg-purple-dark" id="mainimg"><img src="gameimg"></div></el-col>
+        <el-col :span="18"><div class="grid-content bg-purple-dark" id="detailinfo">
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <span>卡片名称</span>
+                </div>
+                <div class="text item">
+                    {{Gameinfo.gameName }}
+                </div>
+                <div class="text item">
+                    {{Gameinfo.price }}
+                </div>
+                <div class="text item">
+                    {{Gameinfo.outDate }}
+                </div>
+                <div class="text item">
+                    {{Gameinfo.Developers }}
+                </div>
+                <div class="text item">
+                    {{Gameinfo.diyLabels }}
+                </div>
+            </el-card>
+        </div></el-col>
     </el-row>
     <el-row :gutter="10">
         <el-col :span="12"><div class="grid-content bg-purple-dark" id="line"></div></el-col>
@@ -126,7 +147,42 @@
 <!-- Custom Functions -->
 <script src="/js/main.js"></script>
 <script src="/js/detailpage.js"></script>
-<script >new Vue().$mount('#first-apart')</script>
+<script >
+    var Game={};
+    $.ajax({
+        async: false,
+        type : 'get',
+        url : "/DATA/game-detail?game="+game,
+        dataType : "json",
+        success : function (result) {
+            Game.gameName=result.gameName
+            Game.img=result.img
+            Game.commentsNum=result.commentsNum
+            Game.LikeRate=result.LikeRate
+            Game.discount=result.discount
+            Game.price=result.price
+            Game.outDate=result.outDate
+            Game.Developers=result.Developers
+            Game.diyLabels=result.diyLabels
+        },
+        error : function(errorMessage){
+            alert("Data is Error.age");
+        }
+    });
+    vm = new Vue({
+    el: '#first-apart',
+    data(){
+        return {
+            Gameinfo:Game,
+            imgUrl:require(Game.img)
+        }
+    },
+    methods: {
+       
+    }
+})
+
+</script>
 <script>
 var data=[
         {name:"阿根廷区",value:[-63.8,-37.2]},

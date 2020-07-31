@@ -5,28 +5,7 @@ $(function () {
     var myChart2 = echarts.init(document.getElementById('wordcloud'));
     //柱状图
     //传输基本信息
-    var Game={};
-    $.ajax({
-        async: false,
-        type : 'get',
-        url : "/DATA/game-detail?game="+game,
-        dataType : "json",
-        success : function (result) {
-            myChartPeople.hideLoading();
-            Game.gameName=game.gameName
-            Game.commentsNum=game.commentsNum
-            Game.LikeRate=game.LikeRate
-            Game.discount=game.discount
-            Game.price=game.price
-            Game.outDate=game.outDate
-            Game.Developers=game.Developers
-            Game.diyLabels=game.diyLabels
-        },
-        error : function(errorMessage){
-            alert("Data is Error.age");
-            myChart1.hideLoading();
-        }
-    });
+
     //传输折线图信息
     var dates=[]
     var pricebydate=[]
