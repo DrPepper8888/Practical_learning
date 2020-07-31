@@ -9,12 +9,13 @@ import java.util.*;
 
 public class HadoopUtils {
 
-
-    static {
-        System.setProperty("HADOOP_USER_NAME","czy");
+    static{
+        System.setProperty("HADOOP_USER_NAME", "icss");
         String osInfo = System.getProperty("os.name");
-        if(osInfo.toLowerCase().indexOf("windows")!=-1)
-            System.setProperty("hadoop.home.dir","C:/dev/hadoop");
+        if (osInfo.toLowerCase().indexOf("windows") != -1){
+            System.setProperty("hadoop.home.dir", "D:/DevTools/hadoop");
+            System.setProperty("hadoop.tmp.dir", "d:/mrtmp");
+        }
     }
 
     /**

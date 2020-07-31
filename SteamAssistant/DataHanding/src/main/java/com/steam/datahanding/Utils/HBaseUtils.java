@@ -1,6 +1,7 @@
 package com.steam.datahanding.Utils;
 import com.steam.datahanding.HbaseConfig;
 import com.steam.datahanding.SpringContextHolder;
+import com.steam.thrift.DataHanding.Game;
 import com.steam.thrift.DataHanding.po.GamePo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
@@ -324,11 +325,11 @@ public class HBaseUtils {
 
 
     /**
-     * 按照时间搜索
+     * 按照折扣搜索
      *
      * @param tablename
      */
-    public ArrayList<Map<String, Object> > scanInfoByTime(String tablename) throws IOException {
+    public ArrayList<Map<String, Object> > scanInfoByDiscount(String tablename) throws IOException {
         TableName name=TableName.valueOf(tablename);
         Table table = connection.getTable(name);
         ResultScanner results = table.getScanner(new Scan());
@@ -353,7 +354,8 @@ public class HBaseUtils {
                 if(colName.equals("gameID")){
                     gameID=value;
                 }if(colName.equals("commentsNum")){
-                    commentsNum=Integer.parseInt(value);
+//                    commentsNum=Integer.parseInt(value);
+                    commentsNum=0;
                 }if(colName.equals("LikeRate")){
                     LikeRate=value;
                 }if(colName.equals("discount")){
@@ -377,9 +379,31 @@ public class HBaseUtils {
                     publishers=value;
                 }
             }
-            GamePo gamePo=new GamePo(gameID,gameName,commentsNum,LikeRate,discount,price,img,Developers,tag,publishers);
-            map.put("gamepo",gamePo);
+            Game game=new Game(gameID,gameName,commentsNum,LikeRate,discount,price,img,Developers,tag,publishers);
+
+            map.put("game",game);
             arrayList.add(map);
+        }
+        return sortByTime(arrayList);
+    }
+
+    /**
+     * 按照打分搜索
+     *
+     * @param tablename
+     */
+    public ArrayList<Map<String, Object> > scanInfoByScore(String tablename,List<String> rowkeys) throws IOException {
+        ArrayList<Map<String,Object> > arrayList = new ArrayList<>();
+        for(String rowkey:rowkeys){
+            String info=selectRow("search",rowkey);
+            String[] qualify=info.split("\n");
+            for(String one:qualify){
+                String[] factor=one.split("\t");
+                Map<String,Object> map = new HashMap<>();
+                map.put("gameName",factor[2]);
+                map.put("score",factor[3]);
+                arrayList.add(map);
+            }
         }
         return sortByTime(arrayList);
     }
@@ -391,8 +415,16 @@ public class HBaseUtils {
         Comparator c = new Comparator<Map<String,String>>() {
             public int compare(Map<String,String> o1, Map<String,String> o2) {
                 // TODO Auto-generated method stub
-                if(Long.parseLong(o1.get("discount"))<Long.parseLong(o2.get("discount")))
-                    return 1;
+                if(o1.containsKey("discount")) {
+                    if (Long.parseLong(o1.get("discount")) < Long.parseLong(o2.get("discount")))
+                        return 1;
+                    else return -1;
+                }
+                else if(o1.containsKey("score")){
+                    if (Long.parseLong(o1.get("score")) < Long.parseLong(o2.get("score")))
+                        return 1;
+                    else return -1;
+                }
                 else return -1;
             }
         };

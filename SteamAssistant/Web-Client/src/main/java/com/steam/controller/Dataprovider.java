@@ -1,72 +1,88 @@
 package com.steam.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.steam.service.thrift.DHservice;
 import com.steam.service.web.impl.ShowServiceImpl;
-import com.steam.thrift.DataHanding.RegionPrice;
+import com.steam.thrift.DataHanding.DataHandingService;
 import com.steam.thrift.DataHanding.po.CommentPo;
 import com.steam.thrift.DataHanding.po.GamePo;
 import com.steam.thrift.DataHanding.po.HistoryPricePo;
 import com.steam.thrift.DataHanding.po.RegionPricePo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-@RestController
-@RequestMapping("/DATA")
+
+@Controller
+@RequestMapping(value="/DATA")
 public class Dataprovider {
     @Resource
     private ShowServiceImpl showService;
 
-    @GetMapping("/game-detail")
+    @Resource
+    private DHservice datahandingservice;
+
+
+    @GetMapping(value="/game-detail")
+    @ResponseBody
     public String getOneGame(@RequestParam("name") String GameName){
-        GamePo game=showService.getOneGame(GameName);
+        DataHandingService.Iface dataHanding=datahandingservice.startService();
+        GamePo game=showService.getOneGame(GameName,dataHanding);
         String jsonString =JSONObject.toJSONString(game);
         return jsonString;
     }
 
-    @GetMapping("/game-data")
+    @GetMapping(value="/game-data")
+    @ResponseBody
     public String getGames()
     {
-        List<GamePo> games=showService.getGame();
+        DataHandingService.Iface dataHanding=datahandingservice.startService();
+        List<GamePo> games=showService.getGame(dataHanding);
         String jsonString = JSONObject.toJSONString(games);
         return jsonString;
 
     }
-    @GetMapping("/game-Comment")
+    @GetMapping(value="/game-Comment")
+    @ResponseBody
     public String getComment(@RequestParam("name") String GameName)
     {
-        List<CommentPo> comments=showService.getComment(GameName);
+        DataHandingService.Iface dataHanding=datahandingservice.startService();
+        List<CommentPo> comments=showService.getComment(GameName,dataHanding);
         String jsonString = JSONObject.toJSONString(comments);
         return jsonString;
 
     }
-    @GetMapping("/game-History")
+    @GetMapping(value="/game-History")
+    @ResponseBody
     public String getHistoryData(@RequestParam("name") String GameName)
     {
-        List<HistoryPricePo> historyPrices=showService.getHistoryPrice(GameName);
+        DataHandingService.Iface dataHanding=datahandingservice.startService();
+        List<HistoryPricePo> historyPrices=showService.getHistoryPrice(GameName,dataHanding);
         String jsonString = JSONObject.toJSONString(historyPrices);
         return jsonString;
 
     }
-    @GetMapping("/game-RegionPrice")
+    @GetMapping(value="/game-RegionPrice")
+    @ResponseBody
     public String getRegionPrice(@RequestParam("name") String GameName)
     {
-        List<RegionPricePo> Prices=showService.getRegionPrice(GameName);
+        DataHandingService.Iface dataHanding=datahandingservice.startService();
+        List<RegionPricePo> Prices=showService.getRegionPrice(GameName,dataHanding);
         String jsonString = JSONObject.toJSONString(Prices);
         return jsonString;
 
     }
 
-    @GetMapping("/game-search")
+    @GetMapping(value="/game-search")
+    @ResponseBody
     public String getGameByFactor(@RequestParam("lowPrice") int lowPrice,
                                   @RequestParam("highPrice") int highPrice,
                                   @RequestParam("tag") String tag)
     {
-        List<GamePo> gamePos=showService.getGameByFactor(lowPrice,highPrice,tag);
+        DataHandingService.Iface dataHanding=datahandingservice.startService();
+        List<GamePo> gamePos=showService.getGameByFactor(lowPrice,highPrice,tag,dataHanding);
         String jsonString = JSONObject.toJSONString(gamePos);
         return jsonString;
     }
