@@ -202,7 +202,65 @@ End Fixed Navigation
 <script src="../static/js/echarts-gl.min.js"></script>
 <script src="../static/js/world.js"></script>
 <script>
-    var data=[[108.479,23.1152,1100]]
+    var data=[
+        {name:"阿根廷区",value:[-63.8,-37.2]},
+        {name:"澳大利亚区",value:[133.9,-24.9]},
+        {name:"巴西区",value:[-56.1,-7.04]},
+        {name:"英国区",value:[-4.06,53.83]},
+        {name:"加拿大区",value:[-102.3,-57.29]},
+        {name:"智利区",value:[-70.95,-26.22]},
+        {name:"国区",value:[116.40,59.90]},
+        {name:"俄区",value:[41.59,57.02]},
+        {name:"哥伦比亚区",value:[-73.98,-74.607]},
+        {name:"哥斯达黎加区",value:[-84.89,9.96]},
+        {name:"欧元区",value:[15.12,48.86]},
+        {name:"港区",value:[114.156,22.317]},
+        {name:"印度区",value:[80.30,21.84]},
+        {name:"印度尼西亚区",value:[122.619,-4.47]},
+        {name:"以色列区",value:[34.99,31.26]},
+        {name:"哈撒克斯坦区",value:[67.14,47.90]},
+        {name:"科威特区",value:[47.32,29.65]},
+        {name:"马来西亚区",value:[101.49,2.89]},
+        {name:"墨西哥区",value:[-103.12,24.03]},
+        {name:"新西兰区",value:[171.34,-43.113]},
+        {name:"挪威区",value:[9.60,62.10]},
+        {name:"秘鲁区",value:[-76.6,-10.35]},
+        {name:"菲律宾区",value:[122.08,12.96]},
+        {name:"波兰区",value:[18.57,52.24]},
+        {name:"卡尔塔区",value:[51.28,25.41]},
+        {name:"卢布区",value:[120.89,62.22]},
+        {name:"沙特阿拉伯",value:[44.56,25.11]},
+        {name:"新加坡区",value:[103.81,1.35]},
+        {name:"南非区",value:[23.34,-30.67]},
+        {name:"南亚区",value:[90.21,23.80]},
+        {name:"韩国区",value:[126.91,36.77]},
+        {name:"瑞士区",value:[7.94,46.81]},
+        {name:"台区",value:[90.21,23.80]},
+        {name:"泰国区",value:[100.42,15.96]},
+        {name:"土耳其区",value:[34.68,38.83]},
+        {name:"阿联酋区",value:[55.33,24.54]},
+        {name:"美区",value:[-96.54,37.99]},
+        {name:"乌克兰区",value:[31.50,49.21]},
+        {name:"乌拉圭区",value:[-55.79,-33.09]},
+        {name:"越南区",value:[108.41,14.51]},
+        ]
+    $.ajax({
+        type : 'get',
+        url : '/remote/game-RegionPrice?name'+Gamename,
+        dataType : "json",
+        success : function (result) {
+            result.sort( (a, b) => {
+                return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0
+            })
+            $.each(result, function (index, item) {
+                data[index].value.push(item.price);
+                }
+            );
+        },
+        error : function (errorMessage) {
+            alert("Data is Error.");
+        }
+    })
     var dom = document.getElementById("worldmap")
     var myChart = echarts.init(dom);
     option = {
@@ -240,9 +298,12 @@ End Fixed Navigation
             type: 'bar3D',
             coordinateSystem: 'globe',
             label:{
-                show:true,
+                show:false,
                 //distance:5,
-                formatter:'我在：{a}{c}',
+                formatter:function (param) {
+                    var res=param.value;
+                    return param.name+":"+res.slice(-1);
+                },
                 textStyle:{
                     fontWeight:'bolder',
                     fontSize:22,
@@ -265,31 +326,33 @@ End Fixed Navigation
         myChart.setOption(option, true);
     }
 </script>
+    <script>window.jQuery || document.write('<script src="../static/js/jquery-1.11.1.min.js"><\/script>')</script>
+    <script src="../static/js/lunbotu.js"></script>
+    <!-- Main jQuery -->
+    <!-- <script src="js/jquery-1.11.1.min.js"></script> -->
+    <!-- Twitter Bootstrap -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- Single Page Nav -->
+    <script src="../static/js/jquery.singlePageNav.min.js"></script>
+    <!-- jquery.fancybox.pack -->
+    <script src="../static/js/jquery.fancybox.pack.js"></script>
+    <!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script>--->
+    <!-- Owl Carousel -->
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <!-- jquery easing -->
+    <script src="../static/js/jquery.easing.min.js"></script>
+    <!-- Fullscreen slider -->
+    <script src="../static/js/jquery.slitslider.js"></script>
+    <script src="../static/js/jquery.ba-cond.min.js"></script>
+    <!-- onscroll animation -->
+    <script src="../static/js/wow.min.js"></script>
+    <!-- Custom Functions -->
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/detailpage.js" ></script>
+    <script >new Vue().$mount('#first-apart')</script>
+
 </main>
-<script>window.jQuery || document.write('<script src="../static/js/jquery-1.11.1.min.js"><\/script>')</script>
-<script src="../static/js/lunbotu.js"></script>
-<!-- Main jQuery -->
-<!-- <script src="js/jquery-1.11.1.min.js"></script> -->
-<!-- Twitter Bootstrap -->
-<script src="../static/js/bootstrap.min.js"></script>
-<!-- Single Page Nav -->
-<script src="../static/js/jquery.singlePageNav.min.js"></script>
-<!-- jquery.fancybox.pack -->
-<script src="../static/js/jquery.fancybox.pack.js"></script>
-<!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script>--->
-<!-- Owl Carousel -->
-<script src="../static/js/owl.carousel.min.js"></script>
-<!-- jquery easing -->
-<script src="../static/js/jquery.easing.min.js"></script>
-<!-- Fullscreen slider -->
-<script src="../static/js/jquery.slitslider.js"></script>
-<script src="../static/js/jquery.ba-cond.min.js"></script>
-<!-- onscroll animation -->
-<script src="../static/js/wow.min.js"></script>
-<!-- Custom Functions -->
-<script src="../static/js/main.js"></script>
-<script src="../static/js/detailpage.js" ></script>
-<script >new Vue().$mount('#first-apart')</script>
+
 </body>
 
 
